@@ -1,20 +1,9 @@
+<h2>My Stocks</h2>
 <ul class="stocks">
 	<li *ngFor="let stock of stocks">
-		<h2>{{stock.symbol}} Details</h2>
-		<div><span>dailyHigh: </span>{{stock.dailyHigh}}</div>
-		<div><span>dailyLow: </span>{{stock.dailyLow}}</div>
-		<div><span>dailyOpen: </span>{{stock.dailyOpen}}</div>
-		<div><span>dailyClose: </span>{{stock.dailyClose}}</div>
-		<div><span>recentHigh: </span>{{stock.recentHigh}}</div>
-		<div><span>targetHigh: </span>{{stock.targetHigh}}</div>
-		<div><span>targetLow: </span>{{stock.targetLow}}</div>
-		<div><span>changePercent: </span>{{stock.changePercent}}</div>
-		<div><span>state: </span>{{stock.state}}</div>
+		<a routerLink="/detail/{{stock.symbol}}">
+			<span class="badge">{{stock.state}}</span> {{stock.symbol}}
+		</a>
 	</li>
 </ul>
-<div>
-  <label>name:
-    <input [(ngModel)]="stock.symbol" placeholder="symbol">
-  </label>
-</div>
 

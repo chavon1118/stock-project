@@ -1,4 +1,9 @@
 <h1>
   {{ title }}
 </h1>
-<app-stocks></app-stocks>
+<nav>
+  <a routerLink="/dashboard">Dashboard</a>
+  <a routerLink="/stocks">Stocks</a>
+</nav>
+<router-outlet></router-outlet>
+<app-messages></app-messages>

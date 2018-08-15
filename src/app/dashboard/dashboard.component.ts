@@ -3,12 +3,12 @@ import { Stock } from '../stock';
 import { StockService } from '../stock.service';
 
 @Component({
-	selector: 'app-stocks',
-	templateUrl: './stocks.component.html',
-	styleUrls: ['./stocks.component.css']
+	selector: 'app-dashboard',
+	templateUrl: './dashboard.component.html',
+	styleUrls: ['./dashboard.component.css']
 })
-export class StocksComponent implements OnInit {
-	stocks: Stock[];
+export class DashboardComponent implements OnInit {
+	stocks: Stock[] = [];
 
 	constructor(private stockService: StockService) { }
 
@@ -18,7 +18,7 @@ export class StocksComponent implements OnInit {
 
 	getStocks(): void {
 		this.stockService.getStocks()
-			.subscribe(stocks => this.stocks = stocks);
+		.subscribe(stocks => this.stocks = stocks.slice(1, 10));
 	}
 
 }
