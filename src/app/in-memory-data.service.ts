@@ -4,6 +4,7 @@ export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     const stocks = [
     {
+      id: 'SHOP',
       symbol: 'SHOP',
       dailyHigh: 197,
       dailyLow: 190,
@@ -16,6 +17,7 @@ export class InMemoryDataService implements InMemoryDbService {
       state: 'Hold'
     },
     {
+      id: 'DSG',
       symbol: 'DSG',
       dailyHigh: 44,
       dailyLow: 43,

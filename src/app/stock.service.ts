@@ -15,6 +15,8 @@ const httpOptions = {
 })
 export class StockService {
 	private stocksUrl = 'api/stocks';
+	private stockDataUrl = 'https://www.alphavantage.co';
+	private apiKey = 'RWRWMZZF4OBM1Z9Q';
 
 	constructor(
 		private http: HttpClient,
@@ -28,10 +30,9 @@ export class StockService {
 			);
 	}
 
-	getSTockNo404<Data>(symbol: string): Observable<Stock> {
+	getStockNo404<Data>(symbol: string): Observable<Stock> {
 		const url = `${this.stocksUrl}/?symbol=${symbol}`;
-		return this.http.get<Stock[]>(url)
-		.pipe(
+		return this.http.get<Stock[]>(url).pipe(
 			map(stocks => stocks[0]),
 			tap(s => {
 				const outcome = s ? `fetched` : `did not find`;
@@ -43,7 +44,8 @@ export class StockService {
 
 	getStock(symbol: string): Observable<Stock> {
 		const url = `${this.stocksUrl}/${symbol}`;
-		return this.http.get<Stock>(url).pipe(
+		const dataUrl = `${this.stockDataUrl}/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${this.apiKey}`;
+		return this.http.get<Stock>(dataUrl).pipe(
 			tap(_ => this.log(`fetched stock symbol=${symbol}`)),
 			catchError(this.handleError<Stock>(`getStock symbol=${symbol}`))
 			);

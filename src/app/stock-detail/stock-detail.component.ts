@@ -26,7 +26,24 @@ export class StockDetailComponent implements OnInit {
 	getStock(): void {
 		const symbol = this.route.snapshot.paramMap.get('symbol');
 		this.stockService.getStock(symbol)
-		.subscribe(stock => this.stock = stock);
+		.subscribe(res => {
+			const dailyData = res['Time Series (Daily)'];
+			const currentDate = new Date().toISOString().split('T')[0];
+			const currentDailyData = dailyData[currentDate];
+			const newStock = {
+				symbol: 'SHOP',
+				dailyHigh: currentDailyData["2. high"],
+				dailyLow: currentDailyData["3. low"],
+				dailyOpen: currentDailyData["1. open"],
+				dailyClose: currentDailyData["4. close"],
+				recentHigh: 197,
+				targetHigh: 200,
+				targetLow: 170,
+				changePercent: 0.05,
+				state: 'Hold'
+			};
+			this.stock = newStock;
+		});
 	}
 
 	goBack(): void {

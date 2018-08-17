@@ -25,10 +25,7 @@ import { MessagesComponent } from './messages/messages.component';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false}
-    )
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
